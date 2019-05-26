@@ -4,6 +4,9 @@
     <h1>
       First Element
     </h1>
+    <p>
+    Open Console To See Log
+    </p>
   </div>
   <div class="small-box" id="element">
     <h1>
@@ -24,21 +27,6 @@
 
 <script>
   // add listener to browser scroll to react when scrolling
-  window.addEventListener('scroll', () => {
-
-    let element = this.isElementOut(document.querySelector('#element'))
-    if (element.top)
-      console.log("element is out of viewport (TOP)");
-    if (element.bottom)
-      console.log("element is out of viewport (BOTTOM)");
-    if (element.right)
-      console.log("element is out of viewport (RIGHT)");
-    if (element.left)
-      console.log("element is out of viewport (LEFT)");
-    if (element.any)
-      console.log("element is out of viewport (ANY TOP/BOTTOM/RIGHT/LEFT)");
-  })
-
   function isElementOut(elem) {
 
     let bounding = elem.getBoundingClientRect();
@@ -51,5 +39,22 @@
     out.all = out.top && out.left && out.bottom && out.right;
     return out;
 
-  }
+  }  
+  
+  window.addEventListener('scroll', () => {
+
+    let element = isElementOut(document.querySelector('#element'))
+    if (element.top)
+      console.log("element is out of viewport (TOP)");
+    if (element.bottom)
+      console.log("element is out of viewport (BOTTOM)");
+    if (element.right)
+      console.log("element is out of viewport (RIGHT)");
+    if (element.left)
+      console.log("element is out of viewport (LEFT)");
+    if (element.any)
+      console.log("element is out of viewport (ANY TOP/BOTTOM/RIGHT/LEFT)");
+  })
+
+
 </script>
