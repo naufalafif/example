@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="./style.css">
+<div class="big-box">
+  <div class="small-box">
+    <h1>
+      First Element
+    </h1>
+  </div>
+  <div class="small-box" id="element">
+    <h1>
+      Second Element (elementOut)
+    </h1>
+  </div>
+  <div class="small-box" id="element2">
+    <h1>
+      Third Element
+    </h1>
+  </div>
+  <div class="small-box">
+    <h1>
+      Fourth Element
+    </h1>
+  </div>
+</div>
+
+<script>
+  // add listener to browser scroll to react when scrolling
+  window.addEventListener('scroll', () => {
+
+    let element = this.isElementOut(document.querySelector('#element'))
+    if (element.top)
+      console.log("element is out of viewport (TOP)");
+    if (element.bottom)
+      console.log("element is out of viewport (BOTTOM)");
+    if (element.right)
+      console.log("element is out of viewport (RIGHT)");
+    if (element.left)
+      console.log("element is out of viewport (LEFT)");
+    if (element.any)
+      console.log("element is out of viewport (ANY TOP/BOTTOM/RIGHT/LEFT)");
+  })
+
+  function isElementOut(elem) {
+
+    let bounding = elem.getBoundingClientRect();
+    let out = {};
+    out.top = bounding.top < 0;
+    out.left = bounding.left < 0;
+    out.bottom = bounding.bottom > (window.innerHeight || document.documentElement.clientHeight);
+    out.right = bounding.right > (window.innerWidth || document.documentElement.clientWidth);
+    out.any = out.top || out.left || out.bottom || out.right;
+    out.all = out.top && out.left && out.bottom && out.right;
+    return out;
+
+  }
+</script>
